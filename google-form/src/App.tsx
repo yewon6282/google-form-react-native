@@ -1,13 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import SurveyStack from './navigations/SurveyStack';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <SurveyStack />
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <ActionSheetProvider>
+      <NavigationContainer>
+        <SurveyStack />
+      </NavigationContainer>
+    </ActionSheetProvider>
   );
 };
 
