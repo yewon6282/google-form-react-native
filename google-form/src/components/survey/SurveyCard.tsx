@@ -1,27 +1,18 @@
-import {
-  Image,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Image, Modal, Pressable, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { QuestionType } from '../../types/Survey';
-import SurveyTypeButton from '../common/SurveyTypeButton';
-import ShortLongInput from '../common/ShortLongInput';
-import RadioCheckInput from '../common/RadioCheckInput';
-import { ModalData } from '../../../assets/json/SurveyData';
 import {
   changeEssential,
   changeQuestion,
   copyQuestion,
   deleteQuestion,
 } from '../../store/reviewing';
+import { QuestionType } from '../../types/Survey';
+import SurveyTypeButton from '../common/SurveyTypeButton';
+import ShortLongInput from '../common/ShortLongInput';
+import RadioCheckInput from '../common/RadioCheckInput';
 import { handleDebounce } from '../../utils/DebounceUtils';
+import { ModalData } from '../../../assets/json/SurveyData';
 
 const SurveyCard = (data: QuestionType) => {
   const { id, title, options, questionType, isEssential } = data;
@@ -62,10 +53,7 @@ const SurveyCard = (data: QuestionType) => {
     <Pressable style={styles.section}>
       <View style={styles.leftBorder} />
       <View style={styles.dragIconWrapper}>
-        <Image
-          source={require('../../../assets/image/drag-icon.png')}
-          style={styles.dragIcon}
-        />
+        <Image source={require('../../../assets/image/drag-icon.png')} style={styles.dragIcon} />
       </View>
       <View style={styles.cardCommonWrapper}>
         <View style={styles.titleInputWrapper}>
@@ -88,11 +76,7 @@ const SurveyCard = (data: QuestionType) => {
         <ShortLongInput questionType={questionType} />
       )}
       {(questionType === 'optional' || questionType === 'checkbox') && (
-        <RadioCheckInput
-          id={id}
-          options={options}
-          questionType={questionType}
-        />
+        <RadioCheckInput id={id} options={options} questionType={questionType} />
       )}
       <View style={styles.cardBottomWrapper}>
         <Text style={styles.essentialText}>필수</Text>
@@ -105,10 +89,7 @@ const SurveyCard = (data: QuestionType) => {
           style={styles.isEssentialSwitch}
         ></Switch>
         <Pressable onPress={handleModal} style={styles.dotIconWrapper}>
-          <Image
-            source={require('../../../assets/image/dot-icon.png')}
-            style={styles.dotIcon}
-          />
+          <Image source={require('../../../assets/image/dot-icon.png')} style={styles.dotIcon} />
         </Pressable>
         <Modal
           animationType="slide"
@@ -130,9 +111,7 @@ const SurveyCard = (data: QuestionType) => {
                     </Pressable>
                   ) : (
                     <Pressable onPress={() => setShowModal(!showModal)}>
-                      <Text
-                        style={(styles.modalMenuLabel, { textAlign: 'center' })}
-                      >
+                      <Text style={(styles.modalMenuLabel, { textAlign: 'center' })}>
                         {data.label}
                       </Text>
                     </Pressable>

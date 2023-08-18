@@ -26,9 +26,7 @@ const RadioCheckOptionInput = ({
   const debouncedValue = handleDebounce(value.text, 300);
 
   useEffect(() => {
-    dispatch(
-      changeOption({ id, optionId: value.optionId, text: debouncedValue })
-    );
+    dispatch(changeOption({ id, optionId: value.optionId, text: debouncedValue }));
   }, [debouncedValue]);
 
   const handleOptionText = ({ optionId, text }: OptionTextType) => {
@@ -59,14 +57,8 @@ const RadioCheckOptionInput = ({
           onChangeText={(e) => handleOptionText({ id, optionId, text: e })}
         ></TextInput>
       </View>
-      <Pressable
-        onPress={() => handleDeleteOption(optionId)}
-        style={styles.closeIconWrapper}
-      >
-        <Image
-          source={require('../../../assets/image/close-icon.png')}
-          style={styles.closeIcon}
-        />
+      <Pressable onPress={() => handleDeleteOption(optionId)} style={styles.closeIconWrapper}>
+        <Image source={require('../../../assets/image/close-icon.png')} style={styles.closeIcon} />
       </Pressable>
     </>
   );

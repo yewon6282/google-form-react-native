@@ -7,9 +7,7 @@ export const changeExplanation = (value: string | null) => ({
   value,
 });
 
-type ReviewingAction =
-  | ReturnType<typeof changeTitle>
-  | ReturnType<typeof changeExplanation>;
+type ReviewingAction = ReturnType<typeof changeTitle> | ReturnType<typeof changeExplanation>;
 
 type ReviewingState = {
   title: string;

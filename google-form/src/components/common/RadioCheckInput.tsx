@@ -10,11 +10,7 @@ type RadioCheckInputProps = {
   questionType: 'optional' | 'checkbox';
 };
 
-const RadioCheckInput = ({
-  id,
-  options,
-  questionType,
-}: RadioCheckInputProps) => {
+const RadioCheckInput = ({ id, options, questionType }: RadioCheckInputProps) => {
   const dispatch = useDispatch();
 
   const handleNewOption = () => {

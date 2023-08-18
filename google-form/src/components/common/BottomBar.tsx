@@ -13,10 +13,7 @@ const BottomBar = () => {
     <View style={styles.container}>
       <View style={styles.buttonListWrapper}>
         <Pressable onPress={handleQuestion} style={styles.ListIconWrapper}>
-          <Image
-            source={require('../../../assets/image/add-icon.png')}
-            style={styles.ListIcon}
-          />
+          <Image source={require('../../../assets/image/add-icon.png')} style={styles.ListIcon} />
         </Pressable>
       </View>
     </View>

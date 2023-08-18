@@ -8,21 +8,11 @@ const ShortLongInput = ({ questionType }: ShortLongInputProps) => {
   return (
     <View style={styles.wrapper}>
       <TextInput
-        placeholder={
-          questionType === 'short' ? '단답형 텍스트' : '장문형 텍스트'
-        }
+        placeholder={questionType === 'short' ? '단답형 텍스트' : '장문형 텍스트'}
         placeholderTextColor={'#717579'}
-        style={[
-          styles.textInput,
-          { width: questionType === 'short' ? 167 : 284 },
-        ]}
+        style={[styles.textInput, { width: questionType === 'short' ? 167 : 284 }]}
       ></TextInput>
-      <View
-        style={[
-          styles.bottomBorder,
-          { width: questionType === 'short' ? 167 : 284 },
-        ]}
-      ></View>
+      <View style={[styles.bottomBorder, { width: questionType === 'short' ? 167 : 284 }]}></View>
     </View>
   );
 };

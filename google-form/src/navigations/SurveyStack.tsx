@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 const SurveyStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={"Survey"} component={SurveyScreen} />
+      <Stack.Screen name={'Survey'} component={SurveyScreen} />
     </Stack.Navigator>
   );
 };

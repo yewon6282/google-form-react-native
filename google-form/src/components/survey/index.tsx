@@ -6,9 +6,7 @@ import SurveyCard from './SurveyCard';
 import BottomBar from '../common/BottomBar';
 
 const Survey = () => {
-  const questionList = useSelector(
-    (state: RootState) => state.reviewing.questions
-  );
+  const questionList = useSelector((state: RootState) => state.reviewing.questions);
 
   return (
     <View style={styles.container}>

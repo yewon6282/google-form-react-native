@@ -71,16 +71,11 @@ const initialState: ReviewingState = {
   questions: [{ id: 1, title: '', questionType: 'short', isEssential: false }],
 };
 
-function reviewing(
-  state: ReviewingState = initialState,
-  action: ReviewingAction
-) {
+function reviewing(state: ReviewingState = initialState, action: ReviewingAction) {
   switch (action.type) {
     case ADDQUESTION: {
       const setId =
-        state.questions.length > 0
-          ? state.questions[state.questions.length - 1].id + 1
-          : 1;
+        state.questions.length > 0 ? state.questions[state.questions.length - 1].id + 1 : 1;
       return {
         questions: [
           ...state.questions,
@@ -89,9 +84,7 @@ function reviewing(
       };
     }
     case CHANGEQUESTION: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       const setQuestion = {
         ...state.questions.filter((element) => element.id === action.id)[0],
         title: action.title,
@@ -115,14 +108,10 @@ function reviewing(
     }
     case DELETEQUESTION:
       return {
-        questions: state.questions.filter(
-          (question) => question.id !== action.id
-        ),
+        questions: state.questions.filter((question) => question.id !== action.id),
       };
     case CHANGETYPE: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       let setQuestion;
       if (action.questionType === 'short' || action.questionType === 'long') {
         setQuestion = {
@@ -144,9 +133,7 @@ function reviewing(
       };
     }
     case CHANGEESSENTIAL: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       const setQuestion = {
         ...state.questions.filter((element) => element.id === action.id)[0],
         isEssential: action.isEssential,
@@ -159,9 +146,7 @@ function reviewing(
       };
     }
     case ADDOPTION: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       const setQuestion = {
         ...state.questions.filter((element) => element.id === action.id)[0],
         options: [
@@ -180,9 +165,7 @@ function reviewing(
       };
     }
     case ADDETCOPTION: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       const setQuestion = {
         ...state.questions.filter((element) => element.id === action.id)[0],
         options: [
@@ -201,12 +184,8 @@ function reviewing(
       };
     }
     case CHANGEOPTION: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
-      const setQuestion = state.questions.filter(
-        (element) => element.id === action.id
-      )[0];
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
+      const setQuestion = state.questions.filter((element) => element.id === action.id)[0];
       const setAnotherOption = setQuestion.options?.filter(
         (element) => element.id !== action.optionId
       );
@@ -216,10 +195,7 @@ function reviewing(
           return +a.id - +b.id;
         }
       );
-      const newObject = [
-        ...setAnotherQuestion,
-        { ...setQuestion, options: newOptions },
-      ];
+      const newObject = [...setAnotherQuestion, { ...setQuestion, options: newOptions }];
       return {
         questions: newObject.sort((a: QuestionType, b: QuestionType) => {
           return +a.id - +b.id;
@@ -227,9 +203,7 @@ function reviewing(
       };
     }
     case DELETEOPTION: {
-      const setAnotherQuestion = state.questions.filter(
-        (element) => element.id !== action.id
-      );
+      const setAnotherQuestion = state.questions.filter((element) => element.id !== action.id);
       const setQuestion = {
         ...state.questions.filter((element) => element.id === action.id)[0],
         options: [

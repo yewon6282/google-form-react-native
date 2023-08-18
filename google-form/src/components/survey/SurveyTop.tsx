@@ -1,14 +1,12 @@
 import { StyleSheet, TextInput, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeExplanation, changeTitle } from '../../store/naming';
 import { RootState } from '../../store';
+import { changeExplanation, changeTitle } from '../../store/naming';
 import { handleDebounce } from '../../utils/DebounceUtils';
 
 const SurveyTop = () => {
-  const { title, explanation } = useSelector(
-    (state: RootState) => state.naming
-  );
+  const { title, explanation } = useSelector((state: RootState) => state.naming);
   const dispatch = useDispatch();
 
   const [titleValue, setTitleValue] = useState<string>(title);
