@@ -1,27 +1,44 @@
-import {
-  GestureResponderEvent,
-  Image,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-} from 'react-native';
+import { Image, StyleSheet, Text, Pressable, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { QuestionSort } from '../../types/Survey';
 import { SurveyTypeData } from '../../../assets/json/SurveyData';
+import showActionSheet from '../../utils/ActionSheet';
+import { changeType } from '../../store/reviewing';
 
 interface SurveyTypeButtonProps {
   isSelected: QuestionSort;
-  onPress: (e: GestureResponderEvent) => void;
+  id: number;
 }
 
-const SurveyTypeButton = ({ isSelected, onPress }: SurveyTypeButtonProps) => {
+const SurveyTypeButton = ({ isSelected, id }: SurveyTypeButtonProps) => {
+  const dispatch = useDispatch();
+
+  const handleActionSheet = () => {
+    const options = {
+      options: SurveyTypeData.map((el) => el.label),
+      cancelButtonIndex: SurveyTypeData.length - 1,
+    };
+
+    const callback = (buttonIndex: number) => {
+      if (buttonIndex === options.cancelButtonIndex) {
+        return;
+      } else if (buttonIndex === 1) {
+        dispatch(
+          changeType({ id, questionType: SurveyTypeData[buttonIndex].value })
+        );
+      }
+    };
+
+    showActionSheet({ options, callback });
+  };
+
   const selectedType = SurveyTypeData.filter(
     (data) => data.value === isSelected
   )[0];
 
   return (
     <View style={styles.wrapper}>
-      <Pressable onPress={(e) => onPress(e)} style={styles.container}>
+      <Pressable onPress={() => handleActionSheet()} style={styles.container}>
         {selectedType.icon && (
           <Image source={selectedType.icon} style={styles.typeIcon} />
         )}

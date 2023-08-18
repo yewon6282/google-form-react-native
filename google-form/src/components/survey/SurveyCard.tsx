@@ -10,16 +10,14 @@ import {
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useActionSheet } from '@expo/react-native-action-sheet';
 import { QuestionType } from '../../types/Survey';
 import SurveyTypeButton from '../common/SurveyTypeButton';
 import ShortLongInput from '../common/ShortLongInput';
 import RadioCheckInput from '../common/RadioCheckInput';
-import { ModalData, SurveyTypeData } from '../../../assets/json/SurveyData';
+import { ModalData } from '../../../assets/json/SurveyData';
 import {
   changeEssential,
   changeQuestion,
-  changeType,
   copyQuestion,
   deleteQuestion,
 } from '../../store/reviewing';
@@ -39,29 +37,6 @@ const SurveyCard = (data: QuestionType) => {
 
   const handleQuestionTitle = (question: string) => {
     setValue(question);
-  };
-
-  const { showActionSheetWithOptions } = useActionSheet();
-
-  const handleSheet = () => {
-    const options = SurveyTypeData.map((el) => el.label);
-    const cancelButtonIndex = 4;
-
-    showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex,
-      },
-      (buttonIndex) => {
-        if (buttonIndex === 4) {
-          return;
-        } else if (buttonIndex || buttonIndex === 0) {
-          dispatch(
-            changeType({ id, questionType: SurveyTypeData[buttonIndex].value })
-          );
-        }
-      }
-    );
   };
 
   const handleEssential = (isEssential: boolean) => {
@@ -107,7 +82,7 @@ const SurveyCard = (data: QuestionType) => {
             style={styles.ImageIcon}
           />
         </View>
-        <SurveyTypeButton isSelected={questionType} onPress={handleSheet} />
+        <SurveyTypeButton isSelected={questionType} id={id} />
       </View>
       {(questionType === 'short' || questionType === 'long') && (
         <ShortLongInput questionType={questionType} />
