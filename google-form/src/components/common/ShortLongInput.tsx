@@ -11,6 +11,8 @@ const ShortLongInput = ({ questionType }: ShortLongInputProps) => {
         placeholder={questionType === 'short' ? '단답형 텍스트' : '장문형 텍스트'}
         placeholderTextColor={'#717579'}
         style={[styles.textInput, { width: questionType === 'short' ? 167 : 284 }]}
+        editable={false}
+        selectTextOnFocus={false}
       ></TextInput>
       <View style={[styles.bottomBorder, { width: questionType === 'short' ? 167 : 284 }]}></View>
     </View>
